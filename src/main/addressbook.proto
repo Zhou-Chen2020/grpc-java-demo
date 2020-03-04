@@ -1,0 +1,36 @@
+syntax = "proto2";
+
+package tutorial;
+
+//生产的java文件所在包名
+option java_package = "com.example.tutorial";
+//生成的java文件类名，不指定则用.proto文件名驼峰后的名字
+option java_outer_classname = "AddressBookProtos";
+
+//联系人结构
+message Person {
+//后面的数字是tag，唯一性，建议使用1-15（性能最佳）
+  required string name = 1; 
+  required int32 id = 2;
+  optional string email = 3;
+  map<key_type, value_type> map_field = N;
+// 枚举类型，必须从0开始，序号可跨越。同一包下不能重名，所以加前缀来区别
+  enum PhoneType {
+    MOBILE = 0;
+    HOME = 1;
+    WORK = 2;
+  }
+
+  message PhoneNumber {
+    required string number = 1;
+    //可指定默认值，不指定就使用Proto的系统默认值，具体值可看官方文档
+    optional PhoneType type = 2 [default = HOME]; 
+  }
+
+  repeated PhoneNumber phones = 4;
+}
+
+//电话本结构
+message AddressBook {
+  repeated Person people = 1;
+}

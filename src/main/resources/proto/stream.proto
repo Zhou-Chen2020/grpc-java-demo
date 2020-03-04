@@ -1,0 +1,22 @@
+syntax = "proto3";
+package stream;
+option java_package = "com.test.protobuf";
+option java_outer_classname = "Stream";
+
+service StreamService {
+ //简单rpc
+  rpc SimpleFun(RequestData) returns (ResponseData){}
+  //服务器端流式rpc
+  rpc ServerSideStreamFun(RequestData) returns (stream ResponseData){}
+  //客户端流式rpc
+  rpc ClientSideStreamFun(stream RequestData) returns (ResponseData){}
+  //双向流式rpc
+  rpc TwoWayStreamFun(stream RequestData) returns (stream ResponseData){}
+}
+message RequestData {
+  string request = 1;
+}
+
+message ResponseData {
+  string response = 1;
+}
