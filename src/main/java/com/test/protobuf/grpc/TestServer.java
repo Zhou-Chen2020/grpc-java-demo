@@ -12,7 +12,7 @@ import java.io.IOException;
 public class TestServer {
     private static Logger log = Logger.getLogger(TestServer.class);
 
-    private static int port = 8080;
+    private static int port = 10006;
     private static io.grpc.Server server;
 
     /**

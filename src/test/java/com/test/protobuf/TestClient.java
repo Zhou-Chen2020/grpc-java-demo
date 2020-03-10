@@ -17,13 +17,15 @@ import java.util.Iterator;
  */
 public class TestClient {
     private static Logger log = Logger.getLogger(TestServer.class);
-    private static int port = 8080;
+    private static int port = 10006;
+//    private static String url = "114.84.148.40";
+    private static String url = "localhost";
     private static ManagedChannel channel;
 
     @Before
     public void builderManagedChannel(){
         //管理通道构建
-         channel = ManagedChannelBuilder.forAddress("localhost", port).usePlaintext().build();
+         channel = ManagedChannelBuilder.forAddress(url, port).usePlaintext().build();
     }
 
     /**
